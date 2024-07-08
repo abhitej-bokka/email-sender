@@ -7,6 +7,7 @@ const VerifyEmails = () => {
   const [verifiedEmailsFile, setVerifiedEmailsFile] = useState(null);
   const [resumeFile, setResumeFile] = useState(null);
   const [companyName, setCompanyName] = useState('Company Name i.e. Yahoo');
+  const [jobLink, setJobLink] = useState(''); // Added jobLink state
   const [email, setEmail] = useState('abhitej.bokka.tutor@gmail.com');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
@@ -18,6 +19,7 @@ const VerifyEmails = () => {
     formData.append('verifiedEmailsFile', verifiedEmailsFile);
     formData.append('resumeFile', resumeFile);
     formData.append('companyName', companyName);
+    formData.append('jobLink', jobLink); // Added jobLink to formData
     formData.append('email', email);
     formData.append('password', password);
     formData.append('emailSubject', localStorage.getItem('emailSubject'));
@@ -95,6 +97,15 @@ const VerifyEmails = () => {
                 type="text"
                 value={companyName}
                 onChange={(e) => setCompanyName(e.target.value)}
+                required
+              />
+            </div>
+            <div className="form-group">
+              <label>Job Link:</label>
+              <input
+                type="text"
+                value={jobLink}
+                onChange={(e) => setJobLink(e.target.value)}
                 required
               />
             </div>

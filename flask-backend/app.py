@@ -3,7 +3,7 @@ import re
 import spacy
 import smtplib
 import unidecode
-from flask import Flask, request, jsonify, send_file, render_template
+from flask import Flask, request, jsonify, send_file
 from flask_cors import CORS
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
@@ -253,16 +253,19 @@ def process_files():
     return send_file(email_file_path, as_attachment=True)
 
 
-@app.route('/verify-emails', methods=['POST'])
+
 @app.route('/verify-emails', methods=['POST'])
 def verify_emails():
     verified_emails_file = request.files['verifiedEmailsFile']
     resume_file = request.files['resumeFile']
     company_name = request.form['companyName']
+    job_link = request.form['jobLink'] # Added job_link
     email = request.form['email']
     password = request.form['password']
     email_subject = request.form['emailSubject']
     email_body_template = request.form['emailBody']
+
+    logging.info(f"Received verification request for company: {company_name}")
 
     verified_emails_file_path = os.path.join('/tmp', verified_emails_file.filename)
     verified_emails_file.save(verified_emails_file_path)
@@ -282,12 +285,11 @@ def verify_emails():
         name, to_email = line.strip().split(': ')
         first_name, last_name = name.split(' ')
 
-        personalized_email = email_body_template.format(first_name=first_name, last_name=last_name, company_name=company_name)
+        personalized_email = email_body_template.format(first_name=first_name, last_name=last_name, company_name=company_name, link=job_link)
         
         send_email(to_email, email_subject, personalized_email, resume_file_path, email, password)
 
     return jsonify({"message": "Verified emails have been sent."})
-
 
 
 if __name__ == '__main__':
