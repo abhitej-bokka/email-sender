@@ -1,0 +1,147 @@
+.App {
+    text-align: center;
+    background-color: #0d1116;
+    color: white;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+  
+.container {
+    width: 100%;
+    max-width: 800px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+  
+.header-container {
+    margin-bottom: 30px;
+}
+  
+.header {
+    margin: 0;
+    font-size: 50px;
+    font-weight: bold;
+}
+  
+.sub-text {
+    font-size: 25px;
+    color: white;
+}
+  
+.gradient-text {
+    background: -webkit-linear-gradient(left, #60c657 30%, #35aee2 60%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+  
+.email-form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+  
+.email-form {
+    background-color: #1a1d23;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    color: white;
+    width: 100%;
+    max-width: 400px;
+    box-sizing: border-box;
+}
+  
+.email-form h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+  
+.form-group {
+    margin-bottom: 15px;
+}
+  
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+}
+  
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    font-size: 1rem;
+    margin-top: 5px;
+}
+  
+.form-group input[type="file"] {
+    display: none;
+}
+  
+.cta-button {
+    width: 100%;
+    padding: 10px;
+    background: linear-gradient(to right, #60c657, #35aee2);
+    background-size: 200% 200%;
+    border: none;
+    border-radius: 4px;
+    color: white;
+    font-size: 16px;
+    animation: gradient-animation 5s ease infinite;
+    cursor: pointer;
+    margin-top: 10px;
+}
+  
+.footer-container {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+  
+.footer-text {
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+}
+  
+.file-upload-button {
+    width: 100%;
+    padding: 10px;
+    background-color: #1a1d23; /* Matching the background color */
+    border: 2px solid white;
+    box-sizing: border-box;
+    border-radius: 4px;
+    color: white;
+    font-size: 1rem; /* H3 font size equivalent */
+    cursor: pointer;
+    margin-top: 5px;
+    transition: background 0.5s ease, color 0.5s ease;
+}
+  
+.file-upload-button:hover {
+    background-color: white;
+    color: black;
+}
+  
+@keyframes gradient-animation {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}

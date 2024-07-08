@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Email Template</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <div class="container mt-5">
+        <h1>Edit Email Template</h1>
+        <form id="templateForm">
+            <div class="form-group">
+                <label for="emailTemplate">Email Template</label>
+                <textarea class="form-control" id="emailTemplate" name="emailTemplate" rows="20">{{ current_template }}</textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Save Template</button>
+        </form>
+        <div id="message" class="mt-3"></div>
+    </div>
+
+    <script>
+        $(document).ready(function() {
+            $('#templateForm').on('submit', function(event) {
+                event.preventDefault();
+                const emailTemplate = $('#emailTemplate').val();
+                $.ajax({
+                    url: '/edit-template',
+                    type: 'POST',
+                    data: { emailTemplate: emailTemplate },
+                    success: function(response) {
+                        $('#message').text(response.message).addClass('alert alert-success');
+                    },
+                    error: function(error) {
+                        $('#message').text('Failed to save template').addClass('alert alert-danger');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
