@@ -62,8 +62,11 @@ const EmailTemplateEditor = () => {
   return (
     <div className="App">
       <div className="container">
-        <div className="header-container">
-          <p className="header gradient-text">Edit Email Template</p>
+      <div className="header-container">
+          <p className="header gradient-text">Ask by Abhi</p>
+          <p className="sub-text">
+            Bee unique. Bee beautiful. Bee curious.
+          </p>
         </div>
 
 

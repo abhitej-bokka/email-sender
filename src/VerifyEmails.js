@@ -7,7 +7,7 @@ const VerifyEmails = () => {
   const [verifiedEmailsFile, setVerifiedEmailsFile] = useState(null);
   const [resumeFile, setResumeFile] = useState(null);
   const [companyName, setCompanyName] = useState('Company Name i.e. Yahoo');
-  const [jobLink, setJobLink] = useState(''); // Added jobLink state
+  const [jobLink, setJobLink] = useState('https://www.linkedin.com/jobs'); // Added jobLink state
   const [email, setEmail] = useState('abhitej.bokka.tutor@gmail.com');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
