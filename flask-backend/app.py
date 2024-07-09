@@ -147,27 +147,20 @@ def finalize_emails_list(verified_emails_file, names_and_emails_file, output_fil
         verified_emails_content = file.read().strip()
         logging.info(f"Verified emails content: {verified_emails_content}")
     verified_emails = set(clean_email(email) for email in verified_emails_content.split(', '))
-    print('verified_emails')
-    print(verified_emails)
-    print('verified_emails')
+
 
     with open(names_and_emails_file, 'r') as file:
         lines = file.readlines()
         logging.info(f"Names and emails content: {lines}")
 
     with open(output_file, 'w') as outfile:
-        print('I GOT HERE')
+
         for line in lines:
             name, email = line.strip().split(': ')
             email = clean_email(email)
-            print('THIS IS BETTER')
-            print(name)
-            print(email)
-            print(verified_emails)
+
             if email in verified_emails:
-                print('YAYYA')
-                print(email)
-                print('hi')
+
                 logging.info(f"Writing to output: {name}: {email}")
                 outfile.write(f"{name}: {email}\n")
 
@@ -196,7 +189,7 @@ def send_email(to_email, subject, body, attachment_path, smtp_user, smtp_passwor
         logging.error(f"Failed to send email to {to_email}: {str(e)}")
 
 
-def generate_personalized_email(first_name, last_name, company_name, link):
+def generate_personalized_email(first_name, last_name, company_name, link, job_id):
     html_template = u"""
     <html>
     <head>
@@ -207,31 +200,35 @@ def generate_personalized_email(first_name, last_name, company_name, link):
         <p>Hi {first_name},</p>
 
         <p>
-            My name is Abhitej, and I'm studying Computer Science & Statistics at Rutgers University.
-            I was on LinkedIn, came across this {company_name} internship: <a href="{link}">{link}</a> and was super interested in this opportunity.
+            My name is Abhitej, and I studied Computer Science & Data Science at Rutgers University.
+            I was on LinkedIn, came across this {company_name} job: <a href="{link}">{link}</a> and was super interested in this opportunity.
             I reached out by email because I feel my skills & interests align heavily and this is an opportunity I don't want to pass up on.
         </p>
         <p>Can you put me in touch with a recruiter for this position to get an opportunity to interview?</p>
         <p>I'd love to be considered and am a great fit for 3 reasons:</p>
         <ul>
             <li>
+                I'm currently working at Chewy as a Data Engineering Intern! I'm implementing a large language model with AWS Bedrock to analyze SQL statements and capturing data lineage across Snowflake & Vertica databases through Apache Airflow.
+            </li>
+            <li>
                 I worked at Yahoo last summer as a DevSecOps Intern on their cybersecurity team. I created Slack Automations with Python & AWS and debugged software that helped manage EKS clusters.
             </li>
             <li>
                 I've worked at ADP as a Software Engineer Intern on their insurance team. I used Java and Oracle SQL to optimize legacy APIs and Angular to create client summary dashboards.
             </li>
-            <li>
-                I channel my passion in computer science through the Rutgers Mobile App Development Club and participate in hackathons, winning prizes with my project Schwordle: <a href="https://devpost.com/software/schwordle">https://devpost.com/software/schwordle</a>
-            </li>
         </ul>
-        <p>If there's a formal referral process, the job ID is: 2024-50077, which would be super helpful.</p>
+
+        <p>I channel my passion in computer science through hackathons and have won a couple Major League Hacking prizes with my projects: 
+        <br><a href="https://devpost.com/software/schwordle">https://devpost.com/software/schwordle</a> & <a href="https://devpost.com/software/the-power-of-asking">https://devpost.com/software/the-power-of-asking</a> </p>
+
+        <p>If there's a formal referral process, the job ID is: {job_id}, which would be super helpful.</p>
         <p>Please check out my website to learn more about me; it won't disappoint: <a href="http://abhitej-bokka.github.io/">http://abhitej-bokka.github.io/</a></p>
         <p>I attached my resume below and look forward to hearing from you!</p>
         <p>Thank you,</p>
         <p>Abhitej Bokka</p>
     </body>
     </html>
-    """.format(first_name=first_name, company_name=company_name, link=link)
+    """.format(first_name=first_name, company_name=company_name, link=link, job_id=job_id)
 
     return html_template
 
@@ -254,12 +251,13 @@ def process_files():
 
 
 
-@app.route('/verify-emails', methods=['POST'])
+@app.route('/send-emails', methods=['POST'])
 def verify_emails():
     verified_emails_file = request.files['verifiedEmailsFile']
     resume_file = request.files['resumeFile']
     company_name = request.form['companyName']
     job_link = request.form['jobLink'] # Added job_link
+    job_id = request.form['jobID'] # Added job_id
     email = request.form['email']
     password = request.form['password']
     email_subject = request.form['emailSubject']
@@ -285,9 +283,9 @@ def verify_emails():
         name, to_email = line.strip().split(': ')
         first_name, last_name = name.split(' ')
 
-        personalized_email = email_body_template.format(first_name=first_name, last_name=last_name, company_name=company_name, link=job_link)
-        
-        send_email(to_email, email_subject, personalized_email, resume_file_path, email, password)
+        personalized_email = email_body_template.format(first_name=first_name, last_name=last_name, company_name=company_name, link=job_link, job_id=job_id)
+        personalized_subject = email_subject.format(company_name=company_name)
+        send_email(to_email, personalized_subject, personalized_email, resume_file_path, email, password)
 
     return jsonify({"message": "Verified emails have been sent."})
 

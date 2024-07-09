@@ -36,15 +36,15 @@ const GenerateEmails = () => {
       link.remove();
 
       alert('File downloaded. Please verify the emails and submit the verified emails file.');
-      navigate('/verify-emails'); // Navigate to the next step
+      navigate('/send-emails'); // Navigate to the next step
     } catch (error) {
       console.error(error);
       alert('An error occurred while processing the files.');
     }
   };
 
-  const handleNavigateToVerify = () => {
-    navigate('/verify-emails');
+  const handleNavigateToSend = () => {
+    navigate('/send-emails');
   };
 
   return (
@@ -96,8 +96,8 @@ const GenerateEmails = () => {
             </button>
             <label>&nbsp;</label>
 
-            <button type="button" onClick={handleNavigateToVerify} className="file-upload-button">
-              Verify Emails
+            <button type="button" onClick={handleNavigateToSend} className="file-upload-button">
+              Send Emails
             </button>
           </form>
         </div>
