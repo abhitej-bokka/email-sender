@@ -17,8 +17,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "postinstall": "cd api && python install_spacy_model.py"
+    "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": [
