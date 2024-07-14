@@ -3,10 +3,13 @@
     "builds": [
       {
         "src": "api/app.py",
-        "use": "@vercel/python"
+        "use": "@vercel/python",
+        "config": {
+          "installCommand": "pip install -r requirements.txt && python install_spacy_model.py"
+        }
       },
       {
-        "src": "src/**/*",
+        "src": "package.json",
         "use": "@vercel/static-build",
         "config": {
           "distDir": "build"
@@ -20,7 +23,7 @@
       },
       {
         "src": "/(.*)",
-        "dest": "/src/$1"
+        "dest": "/index.html"
       }
     ]
   }
