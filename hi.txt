@@ -1,0 +1,22 @@
+email-sender
+├── flask-backend
+│   ├── venv
+│   ├── app.py
+├── node_modules
+├── public
+├── src
+│   ├── assets
+│   ├── styles
+│   ├── templates
+│   ├── App.js
+│   ├── EmailForm.js
+│   ├── EmailTemplateEditor.js
+│   ├── GenerateEmails.js
+│   ├── index.css
+│   ├── index.js
+├── .env
+├── .gitattributes
+├── .gitignore
+├── package-lock.json
+├── package.json
+└── README.md

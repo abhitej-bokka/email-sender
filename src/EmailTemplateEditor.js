@@ -10,7 +10,7 @@ const EmailTemplateEditor = () => {
         <meta charset="utf-8">
         <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     </head>
-    <body style="font-family: 'Roboto', sans-serif; font-size: 12pt; color: #000000;">
+    <body style="font-family: 'Roboto', sans-serif; font-size: 11pt; color: #000000;">
         <p>Hi {first_name},</p>
 
         <p>
