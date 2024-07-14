@@ -5,7 +5,8 @@
         "src": "api/app.py",
         "use": "@vercel/python",
         "config": {
-          "installCommand": "pip install -r requirements.txt && python install_spacy_model.py"
+          "runtime": "python3.9",
+          "installCommand": "pip install -r requirements.txt && python -m spacy download en_core_web_sm"
         }
       },
       {
@@ -25,9 +26,6 @@
         "src": "/(.*)",
         "dest": "/index.html"
       }
-    ],
-    "env": {
-      "PYTHON_VERSION": "3.9"
-    }
+    ]
   }
   
