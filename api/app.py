@@ -16,7 +16,7 @@ import logging
 logging.basicConfig(level=logging.INFO)
 
 app = Flask(__name__)
-CORS(app)
+CORS(app, resources={r"/*": {"origins": ["http://localhost:3000", "https://email-sender-sand.vercel.app"]}})
 
 nlp = spacy.load("en_core_web_sm")
 

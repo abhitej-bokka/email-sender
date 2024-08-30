@@ -12,6 +12,12 @@ const GenerateEmails = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log('Submitting form...');
+    console.log('Form Data:', {
+      companyFile,
+      companyName,
+      emailFormat,
+    });
 
     const formData = new FormData();
     formData.append('companyFile', companyFile);
@@ -19,12 +25,19 @@ const GenerateEmails = () => {
     formData.append('emailFormat', emailFormat);
 
     try {
+      console.log('HIELO')
+
+
       const response = await axios.post('http://localhost:5000/process-files', formData, {
         headers: {
           'Content-Type': 'multipart/form-data'
         },
         responseType: 'blob' // Important for file download
       });
+
+      console.log('HI')
+
+      console.log('Response received:', response);
 
       // Create a link to download the file
       const url = window.URL.createObjectURL(new Blob([response.data]));
@@ -38,7 +51,7 @@ const GenerateEmails = () => {
       alert('File downloaded. Please verify the emails and submit the verified emails file.');
       navigate('/send-emails'); // Navigate to the next step
     } catch (error) {
-      console.error(error);
+      console.error('Error during file processing:', error);
       alert('An error occurred while processing the files.');
     }
   };
