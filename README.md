@@ -64,7 +64,7 @@ Eventually, I can scale this service to automate emails without going to LinkedI
 
 
 
-
+Now for the startup process which I will change very soon!
 
 # Getting Started with Create React App
 
