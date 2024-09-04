@@ -9,7 +9,7 @@ This project stems from the belief that closed mouths aren't fed. Why wait for o
 
 This is the power of asking, the essence of this project.
 
-[<img src="assets/screenshot.jpeg">](https://www.loom.com/share/f1ba0bdca9db4d968335e99f2852e647?sid=0a3a43be-ae7d-477a-926c-2ead040aa1b3)
+[<img src="https://github.com/abhitej-bokka/ask-by-abhi/blob/main/assets/screenshot.jpeg">](https://www.loom.com/share/f1ba0bdca9db4d968335e99f2852e647?sid=0a3a43be-ae7d-477a-926c-2ead040aa1b3)
 
 Click on the picture - it's a video!
 
@@ -22,7 +22,7 @@ First, we collect people we want to email from LinkedIn, and second, we send ema
 
 The users first search for engineering managers hiring for their desired role on LinkedIn. They then copy all the contents of the LinkedIn search and add them to a text file. 
 
-<img src="assets/linkedin.png">
+<img src="https://github.com/abhitej-bokka/ask-by-abhi/blob/main/assets/linkedin.png">
 
 This file, full of information, is pre-processed using SpaCy, an open-source library for advanced natural language processing. 
 
@@ -30,7 +30,7 @@ A natural language process (NLP) called Named Entity Recognition is used, which 
 
 Now, with a list of names, the MatLab code works on splicing together and sending emails with the full name and company name like so: {firstname}.{lastname}@{companyname}.com
 
-<img src="assets/template.png">
+<img src="https://github.com/abhitej-bokka/ask-by-abhi/blob/main/assets/template.png">
 
 It’s configured with MATLAB's preferences to use Gmail's Simple Mail Transfer Protocol (SMTP) server for email sending, including setting up SSL for secure communication. 
 
@@ -38,7 +38,7 @@ It then generates personalized emails for each contact by replacing placeholders
 
 After sending the emails, the script generates an output file containing all personalized emails, providing a record of the outreach effort and enabling us to track our networking activities effectively.
 
-<img src="assets/mail.png">
+<img src="https://github.com/abhitej-bokka/ask-by-abhi/blob/main/assets/mail.png">
 
 
 ## Challenges we ran into
