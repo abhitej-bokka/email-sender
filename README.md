@@ -47,7 +47,7 @@ One of the most significant challenges I faced was implementing the email-sendin
 
 Authentication was failing multiple times for various reasons, and this entailed creating app passwords and enabling multi-factor authentication.
 
-<img src="assets/fix.png">
+<img src="[assets/fix.png](https://github.com/abhitej-bokka/ask-by-abhi/blob/main/assets/fix.png)">
 
 
 ## Accomplishments that we're proud of
